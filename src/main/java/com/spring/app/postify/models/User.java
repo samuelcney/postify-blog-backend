@@ -32,6 +32,10 @@ public class User {
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
 
+    public User(){
+        createdAt = LocalDateTime.now();
+    }
+
     public Integer getId() {
         return id;
     }
