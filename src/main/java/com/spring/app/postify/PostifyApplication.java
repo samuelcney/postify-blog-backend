@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-//@ComponentScan("com.spring.app.postify.config")
+@ComponentScan("com.spring.app.postify.config")
 public class PostifyApplication {
 
 	public static void main(String[] args) {
