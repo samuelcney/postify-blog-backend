@@ -1,16 +1,14 @@
-package com.spring.app.postify.services;
+package com.spring.app.postify.service;
 
-import com.spring.app.postify.dtos.UserRequestDTO;
-import com.spring.app.postify.models.User;
-import com.spring.app.postify.repositories.UserRepository;
+import com.spring.app.postify.dto.UserRequestDTO;
+import com.spring.app.postify.model.User;
+import com.spring.app.postify.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 @Service
@@ -20,7 +18,7 @@ public class UserService {
     private UserRepository userRepository;
 
     @Autowired
-    private BCryptPasswordEncoder passwordEncoder;
+    private PasswordEncoder passwordEncoder;
 
     public List<User> findAll(){
         return this.userRepository.findAll();

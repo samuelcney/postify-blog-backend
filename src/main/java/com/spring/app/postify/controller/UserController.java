@@ -1,8 +1,8 @@
-package com.spring.app.postify.controllers;
+package com.spring.app.postify.controller;
 
-import com.spring.app.postify.dtos.UserRequestDTO;
-import com.spring.app.postify.models.User;
-import com.spring.app.postify.services.UserService;
+import com.spring.app.postify.dto.UserRequestDTO;
+import com.spring.app.postify.model.User;
+import com.spring.app.postify.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/api/users")
+@RequestMapping("/users")
 public class UserController {
 
     @Autowired
@@ -35,7 +35,7 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity createUser(@RequestBody UserRequestDTO dto){
+    public ResponseEntity<?> createUser(@RequestBody UserRequestDTO dto){
 
         try{
             User newUser = userService.create(dto);

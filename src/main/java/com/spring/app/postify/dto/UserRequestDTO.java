@@ -1,6 +1,4 @@
-package com.spring.app.postify.dtos;
-
-import javax.validation.constraints.NotBlank;
+package com.spring.app.postify.dto;
 
 public record UserRequestDTO(
 
