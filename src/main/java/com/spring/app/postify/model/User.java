@@ -1,12 +1,15 @@
 package com.spring.app.postify.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import javax.validation.constraints.Email;
 import java.time.LocalDateTime;
+import java.util.List;
 
-@Table(name = "users")
 @Entity
+@Table(name = "users")
 public class User {
 
     @Id
@@ -23,13 +26,19 @@ public class User {
     @Column(name = "password_hash")
     private String password;
 
+    @OneToMany(mappedBy = "user")
+    @JsonIgnore
+    private List<Post> posts;
+
     private String firstName;
     private String lastName;
 
     @Column(name = "created_at", nullable = false, updatable = false)
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime createdAt;
 
     @Column(name = "updated_at")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime updatedAt;
 
     public User(){
@@ -98,5 +107,13 @@ public class User {
 
     public void setUpdatedAt(LocalDateTime updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public List<Post> getPosts() {
+        return posts;
+    }
+
+    public void setPosts(List<Post> posts) {
+        this.posts = posts;
     }
 }

@@ -19,15 +19,12 @@ import java.util.Map;
 public class AuthController {
 
     @Autowired
-    private UserRepository userRepository;
-
-    @Autowired
     public LoginService loginService;
 
     @PostMapping
     public ResponseEntity<?> login(@RequestBody UserRequestDTO userDto){
         try{
-            String response = loginService.login(userDto);
+            String response = this.loginService.login(userDto);
 
             return ResponseEntity.status(200)
                     .body(new ApiResponse("success", response));

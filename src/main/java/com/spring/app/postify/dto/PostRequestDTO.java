@@ -2,6 +2,8 @@ package com.spring.app.postify.dto;
 
 public record PostRequestDTO(
         String title,
-        String content
+        String content,
+        Integer userId,
+        Integer categoryId
 ) {
 }

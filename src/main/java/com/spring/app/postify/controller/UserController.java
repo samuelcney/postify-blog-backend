@@ -25,13 +25,12 @@ public class UserController {
     @GetMapping("/{id}")
     public ResponseEntity<?> findByID(@PathVariable Integer id){
         try{
-            return ResponseEntity.ok(userService.findById(id));
+            return ResponseEntity.ok(this.userService.findById(id));
         }
         catch (RuntimeException e){
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
                     .body(Map.of("message", e.getMessage()));
         }
-
     }
 
     @PostMapping

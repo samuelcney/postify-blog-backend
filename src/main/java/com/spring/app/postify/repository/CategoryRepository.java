@@ -1,14 +1,9 @@
 package com.spring.app.postify.repository;
 
 import com.spring.app.postify.model.Category;
-import com.spring.app.postify.model.Post;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
-
 @Repository
-public interface PostRepository extends JpaRepository<Post, Integer> {
-
-    List<Post> findByCategory(Category category);
+public interface CategoryRepository extends JpaRepository<Category, Integer> {
 }
