@@ -1,2 +1,2 @@
 # postify-blog-backend
-Repositório Backend -> WebApp de um Blog com React e Java - Postify
+Repositório Backend -> Blog app em React / React Native / Java Spring Boot - Postify
