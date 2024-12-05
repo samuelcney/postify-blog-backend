@@ -31,13 +31,12 @@ public class PostController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> findByID(@PathVariable Integer id){
-        try{
+    public ResponseEntity<?> findById(@PathVariable Integer id) {
+        try {
             return ResponseEntity.ok(
                     this.postService.findById(id)
             );
-        }
-        catch (RuntimeException e){
+        } catch (RuntimeException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
                     .body(Map.of("message", e.getMessage()));
         }
@@ -65,4 +64,31 @@ public class PostController {
                     .body(new ApiResponse("error", e.getMessage()));
         }
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<?> updatePost(@RequestBody PostRequestDTO postDTO ,@PathVariable Integer id){
+        try{
+            return ResponseEntity.status(200)
+                    .body(this.postService.update(postDTO, id));
+        }
+        catch (IllegalArgumentException e){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body(new ApiResponse("error", e.getMessage()));
+        }
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deletePost(@PathVariable Integer id){
+        try{
+            this.postService.delete(id);
+            return ResponseEntity.
+                    noContent().build();
+        }
+        catch (IllegalArgumentException e){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body(new ApiResponse("error", e.getMessage()));
+        }
+    }
 }
+
+

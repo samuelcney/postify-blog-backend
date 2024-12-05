@@ -1,6 +1,7 @@
 package com.spring.app.postify.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Setter;
 
@@ -23,6 +24,7 @@ public class Post {
 
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id")
+    @JsonIgnoreProperties({"password","updatedAt","createdAt","firstName","lastName"})
     private User user;
 
     @ManyToOne
