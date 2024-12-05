@@ -1,8 +1,10 @@
 package com.spring.app.postify.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
@@ -14,10 +16,11 @@ public class Category {
     private Integer id;
 
     @Column
-    @NotBlank
+    @NotNull
     private String title;
 
     @OneToMany(mappedBy = "category")
+    @JsonIgnore
     private List<Post> posts;
 
     public Integer getId() {

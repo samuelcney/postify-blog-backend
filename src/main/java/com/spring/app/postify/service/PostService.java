@@ -31,8 +31,14 @@ public class PostService {
     }
 
     public Post findById(Integer id){
-        return this.postRepository.findById(id)
-                .orElseThrow(()-> new RuntimeException("Post não encontrado"));
+        Post post = this.postRepository.findById(id)
+                .orElse(null);
+
+        if(post == null){
+            throw new IllegalArgumentException("Post não encontrado");
+        }
+
+        return post;
     }
 
     public List<Post> findAllByCategoryId(Integer id){
@@ -67,7 +73,7 @@ public class PostService {
 
     public Post update(PostRequestDTO postDTO, Integer id){
         Post post = this.postRepository.findById(id)
-                .orElseThrow(()-> new RuntimeException("Post não encontrado"));
+                .orElseThrow(()-> new IllegalArgumentException("Post não encontrado"));
 
         if(postDTO.title() != null && !postDTO.title().isEmpty()){
             post.setTitle(postDTO.title());
@@ -79,7 +85,7 @@ public class PostService {
 
         if(postDTO.categoryId() != null){
             Category category = this.categoryRepository.findById(postDTO.categoryId())
-                    .orElseThrow(()-> new RuntimeException("Categoria não encontrada"));
+                    .orElseThrow(()-> new IllegalArgumentException("Categoria não encontrada"));
 
             post.setCategory(category);
         }
@@ -90,11 +96,10 @@ public class PostService {
     }
 
 
-    public String delete(Integer id){
+    public void delete(Integer id){
         Post post = this.postRepository.findById(id)
-                .orElseThrow(()-> new RuntimeException("Post não encontrado"));
+                .orElseThrow(()-> new IllegalArgumentException("Post não encontrado"));
 
         this.postRepository.delete(post);
-        return "Post deletado com sucesso";
     }
 }

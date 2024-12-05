@@ -24,9 +24,10 @@ public class User {
     private String email;
 
     @Column(name = "password_hash")
+    @JsonIgnore
     private String password;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     @JsonIgnore
     private List<Post> posts;
 
