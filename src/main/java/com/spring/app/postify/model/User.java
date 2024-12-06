@@ -31,6 +31,12 @@ public class User {
     @JsonIgnore
     private List<Post> posts;
 
+    @OneToMany(mappedBy = "user")
+    private List<Comment> comments;
+
+    @OneToMany(mappedBy = "user")
+    private List<Favorite> favorites;
+
     private String firstName;
     private String lastName;
 
