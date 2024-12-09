@@ -9,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/posts/{id}/favorities")
+@RequestMapping("/posts/{id}/favorites")
 public class FavoriteController {
 
     @Autowired
