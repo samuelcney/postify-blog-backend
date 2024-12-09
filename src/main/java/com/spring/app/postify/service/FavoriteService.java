@@ -4,6 +4,8 @@ import com.spring.app.postify.model.Favorite;
 import com.spring.app.postify.model.Post;
 import com.spring.app.postify.model.User;
 import com.spring.app.postify.repository.FavoriteRepository;
+import com.spring.app.postify.repository.PostRepository;
+import com.spring.app.postify.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +17,19 @@ public class FavoriteService {
     @Autowired
     private FavoriteRepository favoriteRepository;
 
-    public Favorite addFavorite(Post post, User user){
+    @Autowired
+    private PostRepository postRepository;
+
+    @Autowired
+    private UserRepository userRepository;
+
+    public Favorite addFavorite(Integer postId, Integer userId){
+        Post post = this.postRepository.findById(postId)
+                .orElseThrow(()-> new IllegalArgumentException("Post não encontrado"));
+
+        User user = this.userRepository.findById(userId)
+                .orElseThrow(()-> new IllegalArgumentException("Usuário não encontrado"));
+
         Optional<Favorite> existFavorite = this.favoriteRepository.findByPostAndUser(post, user);
 
         if (existFavorite.isPresent()) {

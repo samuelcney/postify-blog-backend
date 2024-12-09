@@ -1,5 +1,6 @@
 package com.spring.app.postify.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
@@ -14,10 +15,12 @@ public class Favorite {
 
     @ManyToOne
     @JoinColumn(referencedColumnName = "id", nullable = false)
+    @JsonIgnoreProperties({"category", "createdAt", "updatedAt"})
     private Post post;
 
     @ManyToOne
     @JoinColumn(referencedColumnName = "id", nullable = false)
+    @JsonIgnoreProperties({"updatedAt","createdAt","firstName","lastName"})
     private User user;
 
     @Column(nullable = false)
