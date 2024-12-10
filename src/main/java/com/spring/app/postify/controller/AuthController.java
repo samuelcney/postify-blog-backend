@@ -23,6 +23,11 @@ public class AuthController {
 
     @PostMapping
     public ResponseEntity<?> login(@RequestBody UserRequestDTO userDto){
+
+        if (userDto.email() == null || userDto.email().isEmpty() || userDto.password() == null || userDto.password().isEmpty()) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(Map.of("error", "Campos obrigatórios não preenchidos"));
+        }
         try{
             String response = this.loginService.login(userDto);
 
