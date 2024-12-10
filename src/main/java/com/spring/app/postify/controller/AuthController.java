@@ -26,7 +26,7 @@ public class AuthController {
 
         if (userDto.email() == null || userDto.email().isEmpty() || userDto.password() == null || userDto.password().isEmpty()) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                    .body(Map.of("error", "Campos obrigatórios não preenchidos"));
+                    .body(Map.of("error", "Preencha todos os campos"));
         }
         try{
             String response = this.loginService.login(userDto);
