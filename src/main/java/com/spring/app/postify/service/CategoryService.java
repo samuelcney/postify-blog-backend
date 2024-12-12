@@ -1,7 +1,6 @@
 package com.spring.app.postify.service;
 
 import com.spring.app.postify.model.Category;
-import com.spring.app.postify.model.Post;
 import com.spring.app.postify.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
