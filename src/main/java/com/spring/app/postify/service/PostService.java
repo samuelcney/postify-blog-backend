@@ -63,7 +63,6 @@ public class PostService {
 
         Post post = new Post();
 
-        post.setTitle(postDTO.title());
         post.setContent(postDTO.content());
         post.setUser(user.get());
         post.setCategory(category.get());
@@ -74,10 +73,6 @@ public class PostService {
     public Post update(PostRequestDTO postDTO, Integer id){
         Post post = this.postRepository.findById(id)
                 .orElseThrow(()-> new IllegalArgumentException("Post não encontrado"));
-
-        if(postDTO.title() != null && !postDTO.title().isEmpty()){
-            post.setTitle(postDTO.title());
-        }
 
         if(postDTO.content() != null && !postDTO.content().isEmpty()){
             post.setContent(postDTO.content());

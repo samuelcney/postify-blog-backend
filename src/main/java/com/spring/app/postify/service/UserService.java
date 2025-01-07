@@ -1,7 +1,6 @@
 package com.spring.app.postify.service;
 
 import com.spring.app.postify.dto.UserRequestDTO;
-import com.spring.app.postify.model.Category;
 import com.spring.app.postify.model.User;
 import com.spring.app.postify.repository.UserRepository;
 import com.spring.app.postify.utils.EmailValidator;

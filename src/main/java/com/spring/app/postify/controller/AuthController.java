@@ -1,7 +1,6 @@
 package com.spring.app.postify.controller;
 
 import com.spring.app.postify.dto.UserRequestDTO;
-import com.spring.app.postify.repository.UserRepository;
 import com.spring.app.postify.service.LoginService;
 import com.spring.app.postify.utils.ApiResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +22,11 @@ public class AuthController {
 
     @PostMapping
     public ResponseEntity<?> login(@RequestBody UserRequestDTO userDto){
+
+        if (userDto.email() == null || userDto.email().isEmpty() || userDto.password() == null || userDto.password().isEmpty()) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(Map.of("error", "Preencha todos os campos"));
+        }
         try{
             String response = this.loginService.login(userDto);
 
