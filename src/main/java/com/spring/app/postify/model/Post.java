@@ -19,9 +19,6 @@ public class Post {
     private Integer id;
 
     @Column
-    private String title;
-
-    @Column
     private String content;
 
     @ManyToOne
@@ -59,14 +56,6 @@ public class Post {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
     }
 
     public String getContent() {
