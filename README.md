@@ -51,25 +51,4 @@ Directory structure:
     │   │   │                   └── utils/
     │   │   │                       ├── ApiResponse.java
     │   │   │                       └── EmailValidator.java
-    │   │   └── resources/
-    │   │       ├── application.properties
-    │   │       └── db/
-    │   │           └── migration/
-    │   │               ├── V1__create_users_table.sql
-    │   │               ├── V2__create_categories_table.sql
-    │   │               ├── V3__create_posts_table.sql
-    │   │               ├── V4__create_comments_table.sql
-    │   │               ├── V5__create_table_favorites.sql
-    │   │               └── V6__alter_posts_table.sql
-    │   └── test/
-    │       └── java/
-    │           └── com/
-    │               └── spring/
-    │                   └── app/
-    │                       └── postify/
-    │                           └── PostifyApplicationTests.java
-    └── .mvn/
-        └── wrapper/
-            └── maven-wrapper.properties
-
 ```
