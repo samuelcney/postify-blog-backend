@@ -2,7 +2,6 @@ package com.spring.app.postify.controller;
 
 import com.spring.app.postify.dto.LoginResponseDTO;
 import com.spring.app.postify.dto.UserRequestDTO;
-import com.spring.app.postify.model.User;
 import com.spring.app.postify.service.LoginService;
 import com.spring.app.postify.utils.ApiResponse;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,6 +1,5 @@
 package com.spring.app.postify.controller;
 
-import com.spring.app.postify.dto.PostRequestDTO;
 import com.spring.app.postify.model.Category;
 import com.spring.app.postify.service.CategoryService;
 import com.spring.app.postify.utils.ApiResponse;
