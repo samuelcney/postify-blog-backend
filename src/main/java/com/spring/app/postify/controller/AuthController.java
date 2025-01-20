@@ -1,5 +1,6 @@
 package com.spring.app.postify.controller;
 
+import com.spring.app.postify.dto.LoginResponseDTO;
 import com.spring.app.postify.dto.UserRequestDTO;
 import com.spring.app.postify.service.LoginService;
 import com.spring.app.postify.utils.ApiResponse;
@@ -28,10 +29,10 @@ public class AuthController {
                     .body(Map.of("error", "Preencha todos os campos"));
         }
         try{
-            String response = this.loginService.login(userDto);
+            LoginResponseDTO data = this.loginService.login(userDto);
 
             return ResponseEntity.status(200)
-                    .body(new ApiResponse("success", response));
+                    .body(new ApiResponse(HttpStatus.OK.name(),"success", data));
         }
         catch (IllegalArgumentException e){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
