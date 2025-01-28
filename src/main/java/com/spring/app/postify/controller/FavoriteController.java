@@ -15,6 +15,20 @@ public class FavoriteController {
     @Autowired
     private FavoriteService favoriteService;
 
+    @GetMapping
+    public ResponseEntity<?> getFavoriteByPostId(@PathVariable Integer id){
+        try{
+            return ResponseEntity.status(200).body(
+                    this.favoriteService.getFavoriteByPostId(id)
+            );
+        }
+        catch (IllegalArgumentException e){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(new ApiResponse("error", e.getMessage()));
+        }
+        
+    }
+
     @PostMapping
     public ResponseEntity<?> favoritePost(@PathVariable Integer id, @RequestBody FavoriteRequestDTO dto){
         try{

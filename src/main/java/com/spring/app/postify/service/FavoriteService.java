@@ -42,4 +42,15 @@ public class FavoriteService {
             return this.favoriteRepository.save(favorite);
         }
     }
+
+    public Favorite getFavoriteByPostId(Integer postId){
+        Post post = this.postRepository.findById(postId)
+                .orElseThrow(()-> new IllegalArgumentException("Post não encontrado"));
+
+
+        Favorite favorite = this.favoriteRepository.findById(post.getId())
+                .orElseThrow(()-> new IllegalArgumentException("Favorito não encontrado"));
+
+        return favorite;
+    }
 }
