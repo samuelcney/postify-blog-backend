@@ -1,10 +1,12 @@
 package com.spring.app.postify.service;
 
 import com.spring.app.postify.dto.PostRequestDTO;
+import com.spring.app.postify.dto.PostResponseDTO;
 import com.spring.app.postify.model.Category;
 import com.spring.app.postify.model.Post;
 import com.spring.app.postify.model.User;
 import com.spring.app.postify.repository.CategoryRepository;
+import com.spring.app.postify.repository.FavoriteRepository;
 import com.spring.app.postify.repository.PostRepository;
 import com.spring.app.postify.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +15,8 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 @Service
 public class PostService {
@@ -26,8 +30,20 @@ public class PostService {
     @Autowired
     private CategoryRepository categoryRepository;
 
+    @Autowired
+    private FavoriteRepository favoriteRepository;
+
     public List<Post> findAll(){
         return this.postRepository.findAll();
+    }
+
+    public List<PostResponseDTO> findAllWithFavoriteUserId(Integer userId) {
+        List<Post> posts = postRepository.findAll();
+
+        return posts.stream().map(post -> {
+            boolean isFavorite = favoriteRepository.findByPostIdAndUserId(post.getId(), userId).isPresent();
+            return new PostResponseDTO(post, isFavorite);
+        }).collect(Collectors.toList());
     }
 
     public Post findById(Integer id){

@@ -17,12 +17,12 @@ public class Comment {
     private String content;
 
     @ManyToOne
-    @JoinColumn(referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "post_id", referencedColumnName = "id", nullable = false)
     @JsonIgnoreProperties({"category", "createdAt", "updatedAt"})
     private Post post;
 
     @ManyToOne
-    @JoinColumn(referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
     @JsonIgnoreProperties({"updatedAt","createdAt","firstName","lastName"})
     private User user;
 

@@ -9,6 +9,7 @@ import com.spring.app.postify.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -43,14 +44,21 @@ public class FavoriteService {
         }
     }
 
-    public Favorite getFavoriteByPostId(Integer postId){
+    public List<Favorite> getFavoritesByPostId(Integer postId){
         Post post = this.postRepository.findById(postId)
                 .orElseThrow(()-> new IllegalArgumentException("Post não encontrado"));
 
 
-        Favorite favorite = this.favoriteRepository.findById(post.getId())
-                .orElseThrow(()-> new IllegalArgumentException("Favorito não encontrado"));
-
-        return favorite;
+        return this.favoriteRepository.findByPost(post);    
     }
+
+    public boolean isFavorite(Integer postId, Integer userId){
+        Post post = this.postRepository.findById(postId)
+                .orElseThrow(()-> new IllegalArgumentException("Post não encontrado"));
+
+        User user = this.userRepository.findById(userId)
+                .orElseThrow(()-> new IllegalArgumentException("Usuário não encontrado"));  
+        
+        return this.favoriteRepository.findByPostAndUser(post, user).isPresent();
+    }   
 }
